@@ -6,4 +6,3 @@ class HttpProvider {
     return response;
   }
 }
-// '/tech+test+json.json'

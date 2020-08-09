@@ -9,6 +9,11 @@ class HavenInitial extends HavenState {
   List<Object> get props => [];
 }
 
+class HavenStarted extends HavenState {
+  @override
+  List<Object> get props => [];
+}
+
 class HavenError extends HavenState {
   final String error;
 

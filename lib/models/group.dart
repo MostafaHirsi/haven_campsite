@@ -15,6 +15,15 @@ class GroupModel extends Equatable {
     );
   }
 
+  static GroupModel fromJson(Map<String, dynamic> json)
+  {
+    return GroupModel(
+      caravan: json['caravan'],
+      familyId: json['familyid'],
+      groupSize: json['groupsize'],
+    );
+  }
+
   @override
   List<Object> get props => [familyId, groupSize, caravan];
 }
