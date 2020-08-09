@@ -14,6 +14,14 @@ class HavenStarted extends HavenState {
   List<Object> get props => [];
 }
 
+class HavenComplete extends HavenState {
+  final int minutesTaken;
+
+  HavenComplete(this.minutesTaken);
+  @override
+  List<Object> get props => [minutesTaken];
+}
+
 class HavenError extends HavenState {
   final String error;
 
