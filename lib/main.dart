@@ -1,10 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart' as bloc;
+import 'package:haven_campsite/blocs/haven_bloc/haven_bloc.dart';
+import 'package:haven_campsite/providers/http_provider.dart';
+
+import 'pages/home_page.dart';
 
 void main() {
-  runApp(MyApp());
+  HttpProvider httpProvider = HttpProvider();
+  runApp(MyApp(
+    httpProvider,
+  ));
 }
 
 class MyApp extends StatelessWidget {
+  final HttpProvider httpProvider;
+
+  const MyApp(this.httpProvider, {Key key}) : super(key: key);
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -14,23 +25,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: bloc.BlocProvider<HavenBloc>(
+        create: (context) => HavenBloc(httpProvider),
+        child: MyHomePage(),
+      ),
     );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold();
   }
 }

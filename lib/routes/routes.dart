@@ -24,10 +24,10 @@ class Routes {
       if (routeModel == null || noOfRoutesForA > noOfRoutesForB) {
         routeModel = routeB;
       }
-    } else if (routeA.route.contains(groupModel.caravan)) {
+    } else if (routeC.route.contains(groupModel.caravan)) {
       int noOfRoutesForA = routeA.route.indexOf(groupModel.caravan);
       int noOfRoutesForC = routeC.route.indexOf(groupModel.caravan);
-      if (routeModel != null || noOfRoutesForA > noOfRoutesForC) {
+      if (routeModel == null || noOfRoutesForA > noOfRoutesForC) {
         routeModel = routeC;
       }
     }

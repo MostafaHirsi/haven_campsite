@@ -17,7 +17,11 @@ part 'haven_state.dart';
 
 class HavenBloc extends Bloc<HavenEvent, HavenState> {
   final HttpProvider httpProvider;
-  HavenBloc(this.httpProvider) : super(HavenInitial());
+
+  HavenBloc(this.httpProvider);
+
+  @override
+  HavenState get initialState => HavenInitial();
 
   @override
   Stream<HavenState> mapEventToState(
@@ -37,16 +41,17 @@ class HavenBloc extends Bloc<HavenEvent, HavenState> {
   }
 
   int calculateRouteLength(List<GroupModel> groupModels) {
-      int groupsLength = groupModels.length;
+    int groupsLength = groupModels.length;
     Queue groupQueue = Queue.from(groupModels);
     int minutesTaken = 0;
     for (var index = 0; index < groupsLength; index++) {
       GroupModel currentGroup = groupQueue.removeFirst();
+      print('Group $index is travelling');
       RouteModel routeModel = Routes.pickRoute(currentGroup);
       int stops = routeModel.route.indexOf(currentGroup.caravan);
       minutesTaken += stops;
     }
-    
+
     return minutesTaken;
   }
 

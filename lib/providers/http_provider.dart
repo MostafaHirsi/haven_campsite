@@ -1,8 +1,8 @@
-import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
 
 class HttpProvider {
-  Future<Response> get(String suburl) async {
-    var response = await get('https://haven-tech-test.s3-eu-west-1.amazonaws.com$suburl');
+  Future<http.Response> get(String suburl) async {
+    http.Response response = await http.get('https://haven-tech-test.s3-eu-west-1.amazonaws.com$suburl');
     return response;
   }
 }
